@@ -6,7 +6,7 @@ const {
   QueryRoom,
   ModifyRoomById,
   deleteRoom,
-  QuerySortedRoom
+
  
 } = require("./room.controller");
 
@@ -14,7 +14,7 @@ router.post("/", Insert);
 
 // Retrieve all Rooms
 router.get("/", QueryRoom);
-router.get("/", QuerySortedRoom);
+
 
 
 // Retrieve a single Room with roomid
