@@ -10,7 +10,7 @@ module.exports = {
         data.seat_count,
        
       ],
-      (error, results, fields) => {
+      (error, results) => {
         if (error) {
           callBack(error);
         }
@@ -23,7 +23,7 @@ module.exports = {
   {
     pool.query(
       `SELECT * FROM room WHERE id = ${id}`,
-      (error, results, fields) => {
+      (error, results) => {
         if (error) {
           callBack(error);
         }
@@ -35,7 +35,7 @@ module.exports = {
     pool.query(
       `SELECT * FROM room`,
       [],
-      (error, results, fields) => {
+      (error, results) => {
         if (error) {
           callBack(error);
         }
@@ -43,47 +43,47 @@ module.exports = {
       }
     );
   },
-  ModifyRoomById: (id, room, result) => {
+  ModifyRoomById: (id, room, callBack) => {
     pool.query(
       "UPDATE room SET room_name = ?, seat_count = ? WHERE id = ?",
       [room.room_name, room.seat_count, id],
       (err, res) => {
         if (err) {
           console.log("error: ", err);
-          result(null, err);
+          callBack(null, err);
           return;
         }
   
         if (res.affectedRows == 0) {
           // not found room with the id
-          result({ error: "not_found" }, null);
+          callBack({ error: "not_found" }, null);
           return;
         }
   
-        console.log("updated room: ", { id: id, ...room });
-        result(null, { id: id, ...room });
+        console.log("updated room: ", { id: id, room });
+        callBack(null, { id: id, room });
       }
     );
   },
 
 
   
-  deleteRoom:(id, result) => {
+  deleteRoom:(id, callBack) => {
     pool.query("DELETE FROM room WHERE id = ?", id, (err, res) => {
       if (err) {
         console.log("error: ", err);
-        result(null, err);
+        callBack(null, err);
         return;
       }
   
       if (res.affectedRows == 0) {
         // not found room with the id
-        result({ error: "not_found" }, null);
+        callBack({ error: "not_found" }, null);
         return;
       }
   
       console.log("deleted room with id: ", id);
-      result(null, res);
+      callBack(null, res);
     });
   
   },
