@@ -62,7 +62,7 @@ const {
       const body = req.body;
       if (!req.body) {
         res.status(400).send({
-          message: "Content can not be empty!"
+          message: "Room can not be empty!"
         });
       }
       
@@ -75,10 +75,7 @@ const {
               res.status(404).send({
                 message: `Not found room with id ${req.params.id}.`
               });
-            } else {
-              res.status(500).send({
-                message: "Error updating room with id " + req.params.id
-              });
+            
             }
           } else res.send(data);
         }
@@ -90,12 +87,9 @@ const {
     if (err) {
       if (err.error === "not_found") {
         res.status(404).send({
-          message: `Not found room with id ${req.params.id}.`
+          message: `could not found room with id ${req.params.id}.`
         });
-      } else {
-        res.status(500).send({
-          message: "Could not delete room with id " + req.params.id
-        });
+      
       }
     } else res.send({ message: `room was deleted successfully!` });
   });
