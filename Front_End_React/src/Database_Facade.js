@@ -1,13 +1,36 @@
 class Database_Facade {
-    verifyInSession(session) {}
-    verifyInTimeslot(timeslot) {}
-    verifyInRoom(room) {}
-    verifyInSpeaker(speaker) {}
-
-    verifyOutSession(String) {}
-    verifyOutTimeslot(String) {}
-    verifyOutRoom(String) {}
-    verifyOutSpeaker(String) {}
+    verifySession(session) {
+        /*
+         *
+         *
+         */
+    }
+    verifyTimeslot(timeslot) {
+        /*
+         * - verify that:
+         *     Timeslot name doesn't contain any problematic characters
+         *     the start and end time are properly formatted
+         *     the end time is after the start time
+         *   returns true if all of these are verified, false otherwise
+         */
+    }
+    verifyRoom(room) {
+        /*
+         * - verify that:
+         *     the Room name doesn't contain any problematic characters
+         *     the Room capacity is > 0
+         *   returns true if all of these are verified, false otherwise
+         */
+    }
+    verifySpeaker(speaker) {
+        /*
+         * - verify that:
+         *       the Speaker's name, cellphone, and dayphone don't contain any problematic characters
+         *       Email is properly formatted
+         *       Cellphone and Dayphone follow the proper format
+         *   returns true if all of these are verified, false otherwise
+         */
+    }
 
     insertSession(session) {}
     insertTimeslot(timeslot) {}
