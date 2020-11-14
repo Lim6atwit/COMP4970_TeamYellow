@@ -15,7 +15,7 @@ const {
       InsertSpeaker(body, (err, results) => {
         if (err) {
           console.log(err);
-          return res.status(500).json({
+          return res.json({
             success: 0,
             message: "Database connection errror"
           });
