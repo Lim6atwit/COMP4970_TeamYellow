@@ -16,7 +16,7 @@ const {
         if (err) {
           console.log(err);
           return res.json({
-            success: 0,
+            
             message: "Database connection errror"
           });
         }
