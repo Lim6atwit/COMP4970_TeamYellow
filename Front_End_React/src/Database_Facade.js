@@ -2,8 +2,63 @@ class Database_Facade {
     
     verifySession(session) {}
     verifyTimeslot(timeslot) {}
-    verifyRoom(room) {}
-    verifySpeaker(speaker) {}
+    verifyRoom(room) {
+        function verifyseatcount(seatcount) {
+            if(seatcount > 0) {
+                return(true);
+            }
+            else {
+                alert("seatcount cannot be 0")
+                return(false);
+            }
+        }
+        function verifyroomname(roomName) {
+            var roomnameformat = /^[0-9a-zA-Z]+$/;
+            if(roomName.value.match(roomnameformat)) {
+                return(true);
+            }
+            else {
+                alert("Please enter using alphanumeric characters only");
+                return(false);
+            }
+        }
+    }
+    verifySpeaker(speaker) {
+        function verifyPhone(number) {
+            var phoneformat = /^\d{10}$/;
+            if(number.value.match(phoneformat)) {
+                return(true);
+            
+            }
+            else {
+                alert("Please enter numerical characters only");
+                return(false);
+            }
+        }
+        
+        function verifyName(name) {
+            var nameformat = /^[0-9a-zA-Z]+$/;
+            if(name.value.match(nameformat)) {
+                return(true);
+            }
+            else {
+                alert("Please input alphanumeric characters only");
+                return(false);
+            }
+
+        }
+        function verifyEmail(email) {
+            var emailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(String(email).toLowerCase());
+            if (email.value.match(emailformat)) {
+                return(true);
+
+            }
+            else {
+                alert("You have entered an invalid email address!");
+                return(false);
+            }
+        }
+    }
 
 
     insertSession(session) 
