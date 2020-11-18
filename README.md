@@ -1,11 +1,11 @@
 ## Run Server
 
-###`npm run server`
+### `npm run server`
 
 ## Run Front End
 
-###`npm run client`
+### `npm run client`
 
 ## Run Both
 
-###`npm run dev`
+### `npm run dev`
