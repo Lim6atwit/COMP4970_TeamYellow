@@ -1,11 +1,24 @@
-## Run Server
+## Set up
 
-### `npm run server`
+### Server
 
-## Run Front End
+`npm install`
 
-### `npm run client`
+### Client
 
-## Run Both
+`cd client`
+`npm install`
 
-### `npm run dev`
+## Run Application
+
+### Run Server
+
+`npm run server`
+
+### Run Front End
+
+`npm run client`
+
+### Run Both
+
+`npm run dev`
