@@ -6,39 +6,31 @@ class UI_Facade extends Component{
     
     constructor(props) {
         super(props);
-        this.state = {'DB': new Database_Facade()};
+        this.state = { DB : new Database_Facade()};
     }
 
-    addSession(session) {
-        console.log('verifying');
+    render() {
+        console.log('------------------ Rendered UI_Facade ------------------');
+    }
+
+    async addSession(session) {
         if(this.state.DB.verifySession(session)) {
-            console.log('inserting');
-            if(this.state.DB.insertSession(session)) {
-                return this.state.DB.querySessions();
-            }
-            return null;
+            
+            await this.state.DB.insertSession(session);
+            var updatedSessions = await this.state.DB.querySessions();
+            return updatedSessions;
+             
         }
         return null;
     }
 
-    addTimeslot(timeslot) {
+    async addTimeslot(timeslot) {
         if(this.state.DB.verifyTimeslot(timeslot)) {
-        
-            var promise = this.state.DB.insertTimeslot(timeslot);
             
-            promise.then(function(response) {
-        
-                console.log(response);
-                return this.state.DB.queryTimeslots();
-        
-                })
-                
-                .catch(function(error) {
-                
-                console.log(error);
-                return null;
-                
-                })
+            await this.state.DB.insertTimeslot(timeslot);
+            var updatedTimeslots = await this.state.DB.queryTimeslots();
+            return updatedTimeslots;
+             
         }
         return null;
     }
@@ -54,64 +46,57 @@ class UI_Facade extends Component{
         return null;
     }
 
-    addSpeaker(speaker) {
+    async addSpeaker(speaker) {
         if(this.state.DB.verifySpeaker(speaker)) {
-        
-            if(this.state.DB.insertSpeaker(speaker)) {
-                return this.state.DB.querySpeakers();
-            }
-            return null;
+            
+            await this.state.DB.insertSpeaker(speaker);
+            var updatedSpeakers = await this.state.DB.querySpeakers();
+            return updatedSpeakers;
+             
         }
         return null;
     }
         
 
-    editSession(session, sessionId) {
+    async editSession(session, sessionId) {
         if(this.state.DB.verifySession(session)) {
         
-            if(this.state.DB.modifySession(session, sessionId)) {
-                return this.state.DB.querySessions();
-            }
-            return null;
+            await this.state.DB.modifySession(session, sessionId);
+
+            return await this.state.DB.querySessions(); 
         }
         return null;
     }
 
-    editTimeslot(timeslot, timeslotId) {
+    async editTimeslot(timeslot, timeslotId) {
         if(this.state.DB.verifyTimeslot(timeslot)) {
         
-            if(this.state.DB.modifyTimeslot(timeslot, timeslotId)) {
-                return this.state.DB.queryTimeslots();
-            }
-            return null;
+            this.state.DB.modifyTimeslot(timeslot, timeslotId); 
+            return await this.state.DB.queryTimeslots();
         }
         return null;
     }
 
-    editRoom(room, roomId) {
+    async editRoom(room, roomId) {
         if(this.state.DB.verifyRoom(room)) {
         
-            if(this.state.DB.modifyRoom(room, roomId)) {
-                return this.state.DB.queryRooms();
-            }
-            return null;
+            this.state.DB.modifyRoom(room, roomId);
+            return await this.state.DB.queryRooms();
         }
         return null;
     }
 
-    editSpeaker(speaker, speakerId) {
+    async editSpeaker(speaker, speakerId) {
         if(this.state.DB.verifySpeaker(speaker)) {
         
-            if(this.state.DB.modifySpeaker(speaker, speakerId)) {
-                return this.state.DB.querySpeakers();
-            }
-            return null;
+            this.state.DB.modifySpeaker(speaker, speakerId)
+            return await this.state.DB.querySpeakers();
         }
         return null;
     }
 
 
-    removeSession(sessionId) {
+    async removeSession(sessionId) {
         if(this.state.DB.removeSession(sessionId)) {
             return this.state.DB.querySessions();
         }
@@ -119,21 +104,21 @@ class UI_Facade extends Component{
        
     }
 
-    removeTimeslot(timeslotId) {
+    async removeTimeslot(timeslotId) {
         if(this.state.DB.removeTimeslot(timeslotId)) {
             return this.state.DB.queryTimeslots();
         }
         return null;
     }
 
-    removeRoom(roomId) {
+    async removeRoom(roomId) {
         if(this.state.DB.removeRoom(roomId)) {
             return this.state.DB.queryRooms();
         }
         return null;
     }
 
-    removeSpeaker(speakerId) {
+    async removeSpeaker(speakerId) {
         if(this.state.DB.removeSpeaker(speakerId)) {
             return this.state.DB.querySpeakers();
         }
@@ -141,50 +126,50 @@ class UI_Facade extends Component{
     }
 
 
-    retrieveSessions() {
-        return this.state.DB.querySessions();
+    async retrieveSessions() {
+        return await this.state.DB.querySessions();
     }
 
-    retrieveTimeslots() {
-        this.state.DB.queryTimeslots();
+    async retrieveTimeslots() {
+        return await this.state.DB.queryTimeslots();
     }
 
-    retrieveRooms() {
-        this.state.DB.queryRooms();
+    async retrieveRooms() {
+        return await this.state.DB.queryRooms();
     }
 
-    retrieveSpeakers() {
-        this.state.DB.querySpeakers();
-    }
-
-
-    retrieveSession(sessionId) {
-        this.state.DB.querySession(sessionId);
-    }
-
-    retrieveTimeslot(timeslotId) {
-        this.state.DB.queryTimeslot(timeslotId);
-    }
-
-    retrieveRoom(roomId) {
-        this.state.DB.queryRoom(roomId);
-    }
-
-    retrieveSpeaker(speakerId) {
-        this.state.DB.querySpeaker(speakerId);
+    async retrieveSpeakers() {
+        return await this.state.DB.querySpeakers();
     }
 
 
-    retrieveSessionsByTimeslot() {
-        this.state.DB.querySessionsByTimeslot();
+    async retrieveSession(sessionId) {
+        return await this.state.DB.querySession(sessionId);
     }
 
-    retrieveSessionsByRoom() {
-        this.state.DB.querySessionsByRoom();
+    async retrieveTimeslot(timeslotId) {
+        return await this.state.DB.queryTimeslot(timeslotId);
     }
 
-    retrieveSessionsBySpeaker() {
-        this.state.DB.querySessionsBySpeaker();
+    async retrieveRoom(roomId) {
+        return await this.state.DB.queryRoom(roomId);
+    }
+
+    async retrieveSpeaker(speakerId) {
+        return await this.state.DB.querySpeaker(speakerId);
+    }
+
+
+    async retrieveSessionsByTimeslot() {
+        return await this.state.DB.querySessionsByTimeslot();
+    }
+
+    async retrieveSessionsByRoom() {
+        return await this.state.DB.querySessionsByRoom();
+    }
+
+    async retrieveSessionsBySpeaker() {
+        return await this.state.DB.querySessionsBySpeaker();
     }
 }
 
