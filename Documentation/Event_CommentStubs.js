@@ -100,48 +100,59 @@ class Event {
 
 
     retrieveSessions() {
-        // returns result of Database_Facade.querySessions
+        // validates result of Database_Facade.querySessions
+        // and returns result on validation success
     }
 
     retrieveTimeslots() {
-        // returns result of Database_Facade.queryTimeslots
+        // validates result of Database_Facade.queryTimeslots
+        // and returns result on validation success
     }
 
     retrieveRooms() {
-        // returns result of Database_Facade.queryRooms
+        // validates result of Database_Facade.queryRooms
+        // and returns result on validation success
     }
 
     retrieveSpeakers() {
-        // returns result of Database_Facade.querySpeakers
+        // validates result of Database_Facade.querySpeakers
+        // and returns result on validation success
     }
 
 
     retrieveSession(sessionId) {
-        // returns result of Database_Facade.querySession
+        // validates result of Database_Facade.querySession
+        // and returns result on validation success
     }
 
     retrieveTimeslot(timeslotId) {
-        // returns result of Database_Facade.queryTimeslot
+        // validates result of Database_Facade.queryTimeslot
+        // and returns result on validation success
     }
 
     retrieveRoom(roomId) {
-        // returns result of Database_Facade.queryRoom
+        // validates result of Database_Facade.queryRoom
+        // and returns result on validation success
     }
 
     retrieveSpeaker(speakerId) {
-        // returns result of Database_Facade.querySpeaker
+        // validates result of Database_Facade.querySpeaker
+        // and returns result on validation success
     }
 
     
     retrieveSessionsByTimeslot() {
-        // returns list of sessions from the database sorted by timeslot
+        // validates list of sessions from the database sorted by timeslot
+        // and returns result on validation success
     }
 
     retrieveSessionsByRoom() {
-        // returns list of sessions from the database sorted by room
+        // validates list of sessions from the database sorted by room
+        // and returns result on validation success
     }
 
     retrieveSessionsBySpeaker() {
-        // returns list of sessions from the database sorted by speaker
+        // validates list of sessions from the database sorted by speaker
+        // and returns result on validation success
     }
 }
