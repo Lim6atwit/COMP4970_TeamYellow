@@ -47,6 +47,7 @@ const FormSpeaker = ({ submitForm }) => {
             type='tel'
             name='phone'
             placeholder="Enter the valid phone number"
+            maxLength="10"
             value={values.phone}
             onChange={handleChange}
           />
@@ -59,6 +60,7 @@ const FormSpeaker = ({ submitForm }) => {
             type='tel'
             name='dayphone'
             placeholder="Enter the day phone number (optional)"
+            maxLength="10"
             value={values.dayphone}
             onChange={handleChange}
           />

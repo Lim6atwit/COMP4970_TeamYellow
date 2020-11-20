@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import '../Form/Form.css';
-import FormRoom from './FormRoom';
-import FormSuccess from '../Form/FormSuccess';
+import FormDelete from './FormDelete';
+import DeleteSucess from './DeleteSuccess';
 
-const FormUpdateRoom = () => {
+const FormDeleteTimeslot = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   function submitForm() {
@@ -18,13 +18,13 @@ const FormUpdateRoom = () => {
           <img className='form-img' src='img/img-2.svg' alt='spaceship' />
         </div> */}
         {!isSubmitted ? (
-          <FormRoom submitForm={submitForm} />
+          <FormDelete submitForm={submitForm} />
         ) : (
-          <FormSuccess/>
+          <DeleteSucess/>
         )}
       </div>
     </>
   );
 };
 
-export default FormUpdateRoom;
+export default FormDeleteTimeslot;

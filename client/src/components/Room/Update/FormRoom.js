@@ -35,6 +35,7 @@ const FormRoom = ({ submitForm }) => {
             type='number'
             name='capacity'
             placeholder="How many seats in this room?"
+            min="0"
             value={values.capacity}
             onChange={handleChange}
           />

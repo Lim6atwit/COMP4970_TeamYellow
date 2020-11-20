@@ -15,7 +15,7 @@ const Speaker = props => (
     </td> */}
     <td>
     <a className="btn btn-warning mr-3" href={"/speaker/edit/"+props.speaker._id}>Edit</a> 
-       <a className="btn btn-danger" href="#" onClick={() => { props.deleteSpeaker(props.speaker._id) }}>delete</a>
+       <a className="btn btn-danger" href={"/speaker/delete/"+props.speaker._id}>delete</a>
     </td>
   </tr>
 )
@@ -23,8 +23,6 @@ const Speaker = props => (
 export default class SpeakerList extends Component {
   constructor(props) {
     super(props);
-
-    this.deleteSpeaker = this.deleteSpeaker.bind(this)
 
     this.state = {speakers: []};
   }
@@ -39,18 +37,9 @@ export default class SpeakerList extends Component {
       })
   }
 
-  deleteSpeaker(id) {
-    axios.delete('http://localhost:5000/api/speakers/'+id)
-      .then(response => { console.log(response.data)});
-
-    this.setState({
-      speakers: this.state.speakers.filter(el => el._id !== id)
-    })
-  }
-
   speakerList() {
     return this.state.speakers.map(currentspeaker => {
-      return <Speaker speaker={currentspeaker} deleteSpeaker={this.deleteSpeaker} key={currentspeaker._id}/>;
+      return <Speaker speaker={currentspeaker} key={currentspeaker._id}/>;
     })
   }
 

@@ -1,19 +1,17 @@
 import React from 'react';
-import validate from '../Form/validateInfo';
-import useForm from './useForm-CreateSpeaker';
+import useForm from './useDeleteForm-Speaker';
 import '../Form/Form.css';
 
-const FormSpeaker = ({ submitForm }) => {
-  const { handleChange, handleSubmit, values, errors } = useForm(
-    submitForm,
-    validate
+const FormDelete = ({ submitForm }) => {
+  const { handleSubmit, values } = useForm(
+    submitForm
   );
 
   return (
     <>
       <form onSubmit={handleSubmit} className='form' noValidate>
         <h1>
-          Add New Speaker
+        Are you sure you want to delete this speaker?
         </h1>
         <div className='form-inputs'>
           <label className='form-label'>Speaker Name</label>
@@ -23,10 +21,8 @@ const FormSpeaker = ({ submitForm }) => {
             name='name'
             placeholder="Enter the full name"
             value={values.name}
-            onChange={handleChange}
+            readOnly="readOnly"
           />
-          
-          {errors.name && <p>{errors.name}</p>}
         </div>
         <div className='form-inputs'>
           <label className='form-label'>Email</label>
@@ -36,9 +32,8 @@ const FormSpeaker = ({ submitForm }) => {
             name='email'
             placeholder="Enter the valid email"
             value={values.email}
-            onChange={handleChange}
+            readOnly="readOnly"
           />
-          {errors.email && <p>{errors.email}</p>}
         </div>
         <div className='form-inputs'>
           <label className='form-label'>Phone Number</label>
@@ -49,9 +44,8 @@ const FormSpeaker = ({ submitForm }) => {
             placeholder="Enter the valid phone number"
             maxLength="10"
             value={values.phone}
-            onChange={handleChange}
+            readOnly="readOnly"
           />
-          {errors.phone && <p>{errors.phone}</p>}
         </div>
         <div className='form-inputs '>
           <label className='form-label'>Day Phone</label>
@@ -62,17 +56,18 @@ const FormSpeaker = ({ submitForm }) => {
             placeholder="Enter the day phone number (optional)"
             maxLength="10"
             value={values.dayphone}
-            onChange={handleChange}
+            readOnly="readOnly"
           />
-          {errors.dayphone && <p>{errors.dayphone}</p>}
         </div>
         <button className='form-input-btn' type='submit'>
-          Add Speaker
+          Delete
         </button>
-        
+        <a href="/speaker" className='form-input-btnn'>
+          Cancel
+        </a>
       </form>
     </>
   );
 };
 
-export default FormSpeaker;
+export default FormDelete;

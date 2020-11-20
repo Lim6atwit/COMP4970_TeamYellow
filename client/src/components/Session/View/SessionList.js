@@ -41,7 +41,7 @@ const Session = props => (
       delay={{ show: 150, hide: 300 }}
       overlay={deleteTooltip}
       >
-        <a className="btn btn-danger ml-4" href="#" onClick={() => { props.deleteSession(props.session._id) }}><FaIcons.FaTrash/></a>
+        <a className="btn btn-danger ml-4" href={"/session/delete/"+props.session._id}><FaIcons.FaTrash/></a>
         {/* <a className="btn btn-danger ml-4" href="#" onClick={handleShow}><FaIcons.FaTrash/></a> */}
       </OverlayTrigger>
     </td>
@@ -55,7 +55,6 @@ class SessionList extends Component {
   
   constructor(props) {
     super(props);
-    this.deleteSession = this.deleteSession.bind(this)
 
     this.state = {sessions: []};
   }
@@ -70,18 +69,9 @@ class SessionList extends Component {
       })
   }
 
-  deleteSession(id) {
-    axios.delete('http://localhost:5000/api/sessions/'+id)
-      .then(response => { console.log(response.data)});
-
-    this.setState({
-      sessions: this.state.sessions.filter(el => el._id !== id)
-    })
-  }
-
   sessionList() {
     return this.state.sessions.map(currentsession => {
-      return <Session session={currentsession} deleteSession={this.deleteSession} key={currentsession._id}/>;
+      return <Session session={currentsession} key={currentsession._id}/>;
     })
   }
 

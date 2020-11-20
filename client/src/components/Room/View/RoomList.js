@@ -13,7 +13,7 @@ const Room = props => (
     </td> */}
     <td>
     <a className="btn btn-warning mr-3" href={"/room/edit/"+props.room._id}>Edit</a> 
-       <a className="btn btn-danger" href="#" onClick={() => { props.deleteRoom(props.room._id) }}>delete</a>
+       <a className="btn btn-danger" href={"/room/delete/"+props.room._id}>delete</a>
     </td>
   </tr>
 )
@@ -21,8 +21,6 @@ const Room = props => (
 export default class RoomList extends Component {
   constructor(props) {
     super(props);
-
-    this.deleteRoom = this.deleteRoom.bind(this)
 
     this.state = {rooms: []};
   }
@@ -37,18 +35,9 @@ export default class RoomList extends Component {
       })
   }
 
-  deleteRoom(id) {
-    axios.delete('http://localhost:5000/api/rooms/'+id)
-      .then(response => { console.log(response.data)});
-
-    this.setState({
-      rooms: this.state.rooms.filter(el => el._id !== id)
-    })
-  }
-
   roomList() {
     return this.state.rooms.map(currentroom => {
-      return <Room room={currentroom} deleteRoom={this.deleteRoom} key={currentroom._id}/>;
+      return <Room room={currentroom} key={currentroom._id}/>;
     })
   }
 

@@ -14,7 +14,7 @@ const Timeslot = props => (
     </td> */}
     <td>
     <a className="btn btn-warning mr-3" href={"/timeslot/edit/"+props.timeslot._id}>Edit</a> 
-       <a className="btn btn-danger" href="#" onClick={() => { props.deleteTimeslot(props.timeslot._id) }}>delete</a>
+       <a className="btn btn-danger" href={"/timeslot/delete/"+props.timeslot._id}>delete</a>
     </td>
   </tr>
 )
@@ -22,8 +22,6 @@ const Timeslot = props => (
 export default class TimeslotList extends Component {
   constructor(props) {
     super(props);
-
-    this.deleteTimeslot = this.deleteTimeslot.bind(this)
 
     this.state = {timeslots: []};
   }
@@ -38,18 +36,9 @@ export default class TimeslotList extends Component {
       })
   }
 
-  deleteTimeslot(id) {
-    axios.delete('http://localhost:5000/api/timeslots/'+id)
-      .then(response => { console.log(response.data)});
-
-    this.setState({
-      timeslots: this.state.timeslots.filter(el => el._id !== id)
-    })
-  }
-
   timeslotList() {
     return this.state.timeslots.map(currenttimeslot => {
-      return <Timeslot timeslot={currenttimeslot} deleteTimeslot={this.deleteTimeslot} key={currenttimeslot._id}/>;
+      return <Timeslot timeslot={currenttimeslot} key={currenttimeslot._id}/>;
     })
   }
 

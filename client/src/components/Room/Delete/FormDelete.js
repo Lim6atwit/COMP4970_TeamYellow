@@ -1,19 +1,17 @@
 import React from 'react';
-import validate from '../Form/validateInfo';
-import useForm from './useForm-CreateRoom';
+import useForm from './useDeleteForm-Room';
 import '../Form/Form.css';
 
-const FormRoom = ({ submitForm }) => {
-  const { handleChange, handleSubmit, values, errors } = useForm(
-    submitForm,
-    validate
+const FormDelete = ({ submitForm }) => {
+  const { handleSubmit, values } = useForm(
+    submitForm
   );
 
   return (
     <>
       <form onSubmit={handleSubmit} className='form' noValidate>
         <h1>
-          Create Room
+          Are you sure you want to delete this room?
         </h1>
         <div className='form-inputs'>
           <label className='form-label'>Room Name</label>
@@ -23,10 +21,9 @@ const FormRoom = ({ submitForm }) => {
             name='name'
             placeholder="Enter the room name"
             value={values.name}
-            onChange={handleChange}
+            readOnly="readOnly"
           />
           
-          {errors.name && <p>{errors.name}</p>}
         </div>
         <div className='form-inputs'>
           <label className='form-label'>Capacity</label>
@@ -37,17 +34,18 @@ const FormRoom = ({ submitForm }) => {
             placeholder="How many seats in this room?"
             min="0"
             value={values.capacity}
-            onChange={handleChange}
+            readOnly="readOnly"
           />
-          {errors.capacity && <p>{errors.capacity}</p>}
         </div>
         <button className='form-input-btn' type='submit'>
-          Add New Room
+          Delete
         </button>
-        
+        <a href="/room" className='form-input-btnn'>
+          Cancel
+        </a>
       </form>
     </>
   );
 };
 
-export default FormRoom;
+export default FormDelete;
