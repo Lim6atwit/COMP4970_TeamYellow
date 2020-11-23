@@ -112,230 +112,207 @@ class Database_Facade {
     }
 
 
-    insertSession(session) 
-      {
-        axios.post('http://localhost:4000/api/session/', session,
-       {
-           
-   
-           "headers": {
-           
-           "content-type": "application/json",
-           
-           },
-           
-           })
+     insertSession(session) {
+
+        return axios.post('http://localhost:4000/api/session/', session)
            .then(function(response) {
            
            console.log(response);
-           return true;
+           
            })
            
            .catch(function(error) {
            
            console.log(error);
-           return false;
+           
            });
       }
 
-    insertTimeslot(timeslot)
-     {
+    insertTimeslot(timeslot) {
    
-       axios.post('http://localhost:4000/api/timeslot/', timeslot,)
+       return axios.post('http://localhost:4000/api/timeslot/', timeslot)
            .then(function(response) {
            
            console.log(response);
-           return true;
+           
            })
            
            .catch(function(error) {
            
            console.log(error);
-           return false;
+           
            });
            
-           }
+        }
        
     
-    insertRoom(room)
-   {
+    insertRoom(room) {
 
-    return axios.post('http://localhost:4000/api/room/', room)
-        .then(function(response) {
+        return axios.post('http://localhost:4000/api/room/', room)
+            .then(function(response) {
         
-        console.log(response);  
+            console.log(response);  
         
-        })
+            })
         
-        .catch(function(error) {
+            .catch(function(error) {
         
-        console.log(error);
+            console.log(error);
         
-        });
+            });
         
-        }
+    }
     
-    insertSpeaker (speaker) 
-    {
+    insertSpeaker (speaker) {
     
         return axios.post('http://localhost:4000/api/speaker/', speaker)
             .then(function(response) {
             
             console.log(response);
-            return true;
             
             })
             
             .catch(function(error) {
             
             console.log(error);
-            return false;
             
             });
             
-            }; 
+    } 
     
 
-    modifySession(session, sessionId)
-    {
+    modifySession(session, sessionId) {
+
         return axios.put(`http://localhost:4000/api/session/${sessionId}`, session)
             .then(function(response) {
             
             console.log(response);
-            return true;
             
             })
             
             .catch(function(error) {
             
             console.log(error);
-            return false;
+
             });
             
             
     }
     
-    modifyTimeslot(timeslot, timeslotId) 
-    {
+    modifyTimeslot(timeslot, timeslotId) {
     
-        axios.put(`http://localhost:4000/api/timeslot/${timeslotId}`, timeslot)
+        return axios.put(`http://localhost:4000/api/timeslot/${timeslotId}`, timeslot)
             .then(function(response) {
             
             console.log(response);
-            return true;
             
             })
             
             .catch(function(error) {
             
             console.log(error);
-            return false;
+    
             });
             
-            };
+    }
     
-    modifyRoom(room, roomId) 
-    {
+    modifyRoom(room, roomId) {
     
-        axios.put(`http://localhost:4000/api/room/${roomId}`, room)
+        return axios.put(`http://localhost:4000/api/room/${roomId}`, room)
             .then(function(response) {
             
             console.log(response);
-            return true;
+            
             })
             
             .catch(function(error) {
             
             console.log(error);
-            return false;
+            
             });
             
-            };
+    }
     
-    modifySpeaker(speaker, speakerId) 
-    {
+    modifySpeaker(speaker, speakerId) {
     
-        axios.put(`http://localhost:4000/api/speaker/${speakerId}`, speaker)
+       return axios.put(`http://localhost:4000/api/speaker/${speakerId}`, speaker)
             .then(function(response) {
             
             console.log(response);
-            return true;
+            
             })
             
             .catch(function(error) {
             
             console.log(error);
-            return false;
+            
             });
             
-            };
-    
-    
+    }
 
     removeSession(sessionId) {
-        axios.delete(`http://localhost:4000/api/session/${sessionId}`)
+
+        return axios.delete(`http://localhost:4000/api/session/${sessionId}`)
             .then(function(response) {
             
             console.log(response);
-            return true;
+            
             })
             
             .catch(function(error) {
             
             console.log(error);
-            return false;
+           
         });
     }
-    removeTimeslot(timeslotId) 
-    {
+
+    removeTimeslot(timeslotId) {
     
-        axios.delete(`http://localhost:4000/api/timeslot/${timeslotId}`)
+        return axios.delete(`http://localhost:4000/api/timeslot/${timeslotId}`)
             .then(function(response) {
             
             console.log(response);
-            return true;
+            
             })
             
             .catch(function(error) {
             
             console.log(error);
-            return false;
+            
         });
             
-    };
+    }
     
-    removeRoom(roomId)
-     {
+    removeRoom(roomId) {
     
-        axios.delete(`http://localhost:4000/api/room/${roomId}`)
+        return axios.delete(`http://localhost:4000/api/room/${roomId}`)
             .then(function(response) {
             
             console.log(response);
-            return true;
+          
             })
             
             .catch(function(error) {
             
             console.log(error);
-            return false;
+           
             });
             
             };
     
-    removeSpeaker(speakerId) 
-    {
+    removeSpeaker(speakerId) {
     
-        axios.delete(`http://localhost:4000/api/speaker/${speakerId}`)
+        return axios.delete(`http://localhost:4000/api/speaker/${speakerId}`)
             .then(function(response) {
             
             console.log(response);
-            return true;
+
             })
             
             .catch(function(error) {
             
             console.log(error);
-            return false;
+          
             });
             
             };
@@ -345,7 +322,7 @@ class Database_Facade {
 
     querySessions() {
 
-        axios.get(`http://localhost:4000/api/session/`)
+        return axios.get(`http://localhost:4000/api/session/`)
             .then(function(response) {
             
             console.log(response);
@@ -361,11 +338,10 @@ class Database_Facade {
 
 
 
-    queryTimeslots() 
-    {
+    queryTimeslots() {
         
     
-        axios.get(`http://localhost:4000/api/timeslot/`)
+        return axios.get(`http://localhost:4000/api/timeslot/`)
             .then(function(response) {
             
             console.log(response);
@@ -380,8 +356,7 @@ class Database_Facade {
             
      }
     
-    queryRooms() 
-    {
+    queryRooms() {
     
         return axios.get(`http://localhost:4000/api/room/`)
             .then(function(response) {
@@ -398,10 +373,9 @@ class Database_Facade {
             
             };
     
-    querySpeakers() 
-    {
+    querySpeakers() {
     
-        axios.get(`http://localhost:4000/api/speaker/`)
+        return axios.get(`http://localhost:4000/api/speaker/`)
             .then(function(response) {
             
             console.log(response);
@@ -414,14 +388,14 @@ class Database_Facade {
             return null;
             });
             
-            };
+        }
     
     
     
 
     querySession(sessionId) {
     
-        axios.get(`http://localhost:4000/api/session/${sessionId}`)
+        return axios.get(`http://localhost:4000/api/session/${sessionId}`)
             .then(function(response) 
             {
             
@@ -440,7 +414,7 @@ class Database_Facade {
 
     queryTimeslot(timeslotId) {
     
-        axios.get(`http://localhost:4000/api/timeslot/${timeslotId}`)
+        return axios.get(`http://localhost:4000/api/timeslot/${timeslotId}`)
             .then(function(response) {
             
             console.log(response);
@@ -457,7 +431,7 @@ class Database_Facade {
     
     queryRoom(roomId) {
     
-        axios.get(`http://localhost:4000/api/room/${roomId}`)
+        return axios.get(`http://localhost:4000/api/room/${roomId}`)
             .then(function(response) 
             {
             
@@ -476,7 +450,7 @@ class Database_Facade {
     
     querySpeaker(speakerId) {
     
-        axios.get(`http://localhost:4000/api/speaker/${speakerId}`)
+        return axios.get(`http://localhost:4000/api/speaker/${speakerId}`)
             .then(function(response) {
             
             console.log(response);
@@ -496,6 +470,8 @@ class Database_Facade {
 
     querySessionsByTimeslot() {}
     querySessionsByRoom() {
+        
+    
         axios.get(`http://localhost:4000/api/room/sortedroom`)
             .then(function(response) {
             
@@ -509,7 +485,7 @@ class Database_Facade {
             return null;
             });
             
-    }
+            }
     querySessionsBySpeaker() {}
 
     dbExists() {
