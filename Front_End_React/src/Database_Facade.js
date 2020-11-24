@@ -108,7 +108,12 @@ class Database_Facade {
     }
 
     verifySession(session) {
-        return (this.verifyTimeslot(session.timeslot) && this.verifyRoom(session.room) && this.verifySpeaker(session.speaker));
+        //room_id, speaker_id, timeslot_id
+        var room = this.queryRoom(session.room_id);
+        var timeslot = this.queryTimeslot(session.room_id);
+        var speaker = this.querySpeaker(session.room_id);
+        
+        return (this.verifyTimeslot(timeslot) && this.verifyRoom(room) && this.verifySpeaker(speaker));
     }
 
 
