@@ -11,6 +11,7 @@ class UI_Facade extends Component{
 
     render() {
         console.log('------------------ Rendered UI_Facade ------------------');
+        return (<p />);
     }
 
     async addSession(session) {

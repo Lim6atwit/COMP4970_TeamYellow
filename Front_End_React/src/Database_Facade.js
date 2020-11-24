@@ -1,10 +1,6 @@
 import axios from 'axios';
 
 class Database_Facade {
-    
-    verifySession(session) {
-        return (verifyTimeslot(session.timeslot) && this.verifyRoom(session.room) && verifySpeaker(session.speaker));
-    }
 
     verifyTimeslot(timeslot) {
         function verifyTimeFormat(time){
@@ -109,6 +105,10 @@ class Database_Facade {
         }
 
         return (verifyPhone(speaker.cellPhone) && verifyPhone(speaker.dayPhone) && verifyName(speaker.speakerName) && verifyEmail(speaker.email))
+    }
+
+    verifySession(session) {
+        return (this.verifyTimeslot(session.timeslot) && this.verifyRoom(session.room) && this.verifySpeaker(session.speaker));
     }
 
 
@@ -459,8 +459,8 @@ class Database_Facade {
             
             .catch(function(error) {
             
-            console.log(error);
-            return null;
+                console.log(error);
+                return null;
             });
             
             }
@@ -470,22 +470,17 @@ class Database_Facade {
 
     querySessionsByTimeslot() {}
     querySessionsByRoom() {
-        
-    
         axios.get(`http://localhost:4000/api/room/sortedroom`)
             .then(function(response) {
-            
-            console.log(response);
-            return response;
-            })
-            
-            .catch(function(error) {
-            
-            console.log(error);
-            return null;
+                console.log(response);
+                return response;
+            }).catch(function(error) {
+                console.log(error);
+                return null;
             });
             
-            }
+    }
+
     querySessionsBySpeaker() {}
 
     dbExists() {
