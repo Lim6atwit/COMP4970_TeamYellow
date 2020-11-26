@@ -61,7 +61,7 @@ class Database_Facade {
 
     verifySpeaker(speaker) {
         function verifyPhone(number) {
-            var phoneformat = /^+\d{11}$/;
+            var phoneformat = /^\+\d{11}$/;
             var builtPhoneNumber="";
             for(var i=0;i<number.length;i++){
                 if(number.substr(i,1).match(/\d/)){
