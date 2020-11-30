@@ -22,10 +22,10 @@ module.exports = {
     );
   },
  
-  QuerySpeakerById: (id, callBack) => 
+  QuerySpeakerById: (speaker_id, callBack) => 
   {
     pool.query(
-      `SELECT * FROM speaker WHERE id = ${id}`,
+      `SELECT * FROM speaker WHERE speaker_id = ${speaker_id}`,
       (error, results) => {
         if (error) {
           callBack(error);
@@ -59,10 +59,10 @@ module.exports = {
       }
     );
   },
-  ModifySpeakerById: (id, speaker, callBack) => {
+  ModifySpeakerById: (speaker_id, speaker, callBack) => {
     pool.query(
-      "UPDATE speaker SET email = ?, cell_phone = ?,day_of_phone=?,speaker_name = ? WHERE id = ?",
-      [speaker.email, speaker.cell_phone, speaker.day_of_phone,speaker.speaker_name, id],
+      "UPDATE speaker SET email = ?, cell_phone = ?,day_of_phone=?,speaker_name = ? WHERE speaker_id = ?",
+      [speaker.email, speaker.cell_phone, speaker.day_of_phone,speaker.speaker_name, speaker_id],
       (err, res) => {
         if (err) {
           console.log("error: ", err);
@@ -71,21 +71,21 @@ module.exports = {
         }
   
         if (res.affectedRows == 0) {
-          // not found speaker with the id
+          // not found speaker with the speaker_id
           callBack({ error: "not_found" }, null);
           return;
         }
   
-        console.log("updated speaker: ", { id: id, speaker });
-        callBack(null, { id: id, speaker });
+        console.log("updated speaker: ", { speaker_id: speaker_id, speaker });
+        callBack(null, { speaker_id: speaker_id, speaker });
       }
     );
   },
 
 
   
-  deleteSpeaker:(id, callBack) => {
-    pool.query("DELETE FROM speaker WHERE id = ?", id, (err, res) => {
+  deleteSpeaker:(speaker_id, callBack) => {
+    pool.query("DELETE FROM speaker WHERE speaker_id = ?", speaker_id, (err, res) => {
       if (err) {
         console.log("error: ", err);
         callBack(null, err);
@@ -93,12 +93,12 @@ module.exports = {
       }
   
       if (res.affectedRows == 0) {
-        // not found room with the id
+        // not found room with the speaker_id
         callBack({ error: "not_found" }, null);
         return;
       }
   
-      console.log("deleted speaker with id: ", id);
+      console.log("deleted speaker with speaker_id: ", speaker_id);
       callBack(null, res);
     });
   
