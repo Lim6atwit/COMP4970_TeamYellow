@@ -16,7 +16,7 @@ const {
         if (err) {
           console.log(err);
           return res.json({
-            
+           
             message: "Database connection errror"
           });
         }
@@ -28,8 +28,8 @@ const {
     },
     
     QuerySpeakerById: (req, res) => {
-      const id = req.params.id;
-      QuerySpeakerById(id, (err, results) => {
+      const speaker_id = req.params.speaker_id;
+      QuerySpeakerById(speaker_id, (err, results) => {
         if (err) {
           console.log(err);
           return;
@@ -78,13 +78,13 @@ const {
       }
       
       ModifySpeakerById(
-        req.params.id,
+        req.params.speaker_id,
         body,
         (err, data) => {
           if (err) {
             if (err.error === "not_found") {
               res.send({
-                message: `Not found speaker with id ${req.params.id}.`
+                message: `Not found speaker with speaker_id ${req.params.speaker_id}.`
               });
             
             }
@@ -94,11 +94,11 @@ const {
     },
        
     deleteSpeaker:(req, res) => {
-  deleteSpeaker(req.params.id, (err, data) => {
+  deleteSpeaker(req.params.speaker_id, (err, data) => {
     if (err) {
       if (err.error === "not_found") {
         res.send({
-          message: `could not found speaker with id ${req.params.id}.`
+          message: `could not found speaker with speaker_id ${req.params.speaker_id}.`
         });
       
       }
