@@ -6,7 +6,7 @@ const {
   QuerySpeaker,
   ModifySpeakerById,
   deleteSpeaker,
-  QuerySpeakerSorted,
+ 
 
 } = require("./speaker.controller");
 // Insert a speaker
@@ -14,17 +14,17 @@ router.post("/", Insert);
 
 // Retrieve all Speakers
 router.get("/", QuerySpeaker);
-router.get("/sortedspeaker/",QuerySpeakerSorted );
+
 
 
 
 // Retrieve a single Speaker with roomid
-router.get("/:id", QuerySpeakerById);
+router.get("/:speaker_id", QuerySpeakerById);
 
 // Update a speaker with speakerid
-router.put("/:id", ModifySpeakerById);
+router.put("/:speaker_id", ModifySpeakerById);
 
-// Delete a speaker with id
-router.delete("/:id", deleteSpeaker);
+// Delete a speaker with speaker_id
+router.delete("/:speaker_id", deleteSpeaker);
 
 module.exports = router; 
