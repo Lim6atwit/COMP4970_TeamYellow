@@ -20,13 +20,13 @@ router.get("/", QueryRoom);
 
 
 // Retrieve a single Room with roomid
-router.get("/:id", QueryRoomById);
+router.get("/:room_id", QueryRoomById);
 
 // Update a room with roomid
-router.put("/:id", ModifyRoomById);
+router.put("/:room_id", ModifyRoomById);
 
-// Delete a room with id
-router.delete("/:id", deleteRoom);
+// Delete a room with room_id
+router.delete("/:room_id", deleteRoom);
 
 
 module.exports = router; 
