@@ -1,8 +1,202 @@
 import axios from 'axios';
 
 class Database_Facade {
+    
+    verifySession(session) { return true}
+    verifyTimeslot(timeslot) { return true}
+    verifyRoom(room) { return true}
+    verifySpeaker(speaker) { return true}
+    
 
-    verifyTimeslot(timeslot) {
+
+    async insertSession(session) {
+
+        let response = await axios.post('http://localhost:4000/api/session/', session);
+        return response.data; 
+          
+      }
+
+    async insertTimeslot(timeslot) {
+        
+        let response = await axios.post('http://localhost:4000/api/timeslot/', timeslot);
+        return response.data; 
+            
+        }
+       
+    
+    async insertRoom(room) {
+    
+        let response = await axios.post('http://localhost:4000/api/room/', room);
+        return response;
+           
+    }
+    
+    async insertSpeaker (speaker) {
+        let response = await axios.post('http://localhost:4000/api/speaker/', speaker);
+        return response;
+            
+    } 
+    
+
+    async modifySession(session, sessionId) {
+
+        let response = await axios.put(`http://localhost:4000/api/session/${sessionId}`, session);
+        return response;
+            
+            
+    }
+    
+    async modifyTimeslot(timeslot, timeslotId) {
+    
+        let response = await axios.put(`http://localhost:4000/api/timeslot/${timeslotId}`, timeslot);
+        return response;
+            
+    }
+    
+    async modifyRoom(room, roomId) {
+    
+        let response = await axios.put(`http://localhost:4000/api/room/${roomId}`, room);
+        return response;
+            
+    }
+    
+    async modifySpeaker(speaker, speakerId) {
+    
+        let response = await axios.put(`http://localhost:4000/api/speaker/${speakerId}`, speaker);
+        return response;
+            
+    }
+
+    async removeSession(sessionId) {
+
+        let response = await axios.delete(`http://localhost:4000/api/session/${sessionId}`);
+        return response;
+    }
+
+    async removeTimeslot(timeslotId) {
+    
+        let response = await axios.delete(`http://localhost:4000/api/timeslot/${timeslotId}`);
+        return response;
+            
+    }
+    
+    async removeRoom(roomId) {
+    
+        let response = await axios.delete(`http://localhost:4000/api/room/${roomId}`);
+        return response;
+            
+    }
+    
+    async removeSpeaker(speakerId) {
+    
+        let response = await axios.delete(`http://localhost:4000/api/speaker/${speakerId}`)
+        return response;
+            
+    }
+    
+    
+    
+
+    async querySessions() {
+
+        let response = await axios.get(`http://localhost:4000/api/session/`);
+        return response.data;
+    }
+
+
+
+    async queryTimeslots() {
+        
+    
+        let response = await axios.get(`http://localhost:4000/api/timeslot/`)
+        return response.data;
+            
+    }
+    
+    async queryRooms() {
+    
+        let response = await axios.get(`http://localhost:4000/api/room/`);
+        return response.data;
+        
+    }
+    
+    async querySpeakers() {
+    
+        let response = await axios.get(`http://localhost:4000/api/speaker/`)
+        return response.data;
+            
+    }
+    
+    
+    
+
+    async querySession(sessionId) {
+    
+        let response = await axios.get(`http://localhost:4000/api/session/${sessionId}`)
+        return response.data;
+            
+    }
+
+    async queryTimeslot(timeslotId) {
+    
+        let response = await axios.get(`http://localhost:4000/api/timeslot/${timeslotId}`)
+        return response.data;
+            
+    }
+    
+    async queryRoom(roomId) {
+    
+        let response = await axios.get(`http://localhost:4000/api/room/${roomId}`)
+        return response.data;
+    }
+    
+    async querySpeaker(speakerId) {
+    
+        let response = await axios.get(`http://localhost:4000/api/speaker/${speakerId}`)
+        return response.data;
+    }
+    
+    
+    
+
+    async querySessionsByTimeslot() {
+
+        //let response = await axios.get(`http://localhost:4000/api/speaker/${speakerId}`)
+        //return response.data;
+    }
+    async querySessionsByRoom() {
+        
+    
+        //let response = await axios.get(`http://localhost:4000/api/room/sortedroom`)
+        //return response.data;
+            
+    }
+    async querySessionsBySpeaker() {
+
+        //let response = await axios.get(`http://localhost:4000/api/speaker/${speakerId}`)
+        //return response.data;
+    }
+
+    async dbExists() {
+        let response = await axios.get(`http://localhost:4000/api/room`)
+            .then(function(response) {
+
+            return true
+            })
+            
+            .catch(function(error) {
+            
+            console.log(error);
+            return false;
+            });
+        return response;   
+    }
+}
+
+export default Database_Facade;
+
+/*
+ verifyTimeslot(timeslot) {
         function verifyTimeFormat(time){
             var timeFormat = /[0-2][0-9]:[0-5][0-9]/;
             if (time.match(timeFormat)) {
@@ -115,394 +309,4 @@ class Database_Facade {
         
         return (this.verifyTimeslot(timeslot) && this.verifyRoom(room) && this.verifySpeaker(speaker));
     }
-
-
-     insertSession(session) {
-
-        return axios.post('http://localhost:4000/api/session/', session)
-           .then(function(response) {
-           
-           console.log(response);
-           
-           })
-           
-           .catch(function(error) {
-           
-           console.log(error);
-           
-           });
-      }
-
-    insertTimeslot(timeslot) {
-   
-       return axios.post('http://localhost:4000/api/timeslot/', timeslot)
-           .then(function(response) {
-           
-           console.log(response);
-           
-           })
-           
-           .catch(function(error) {
-           
-           console.log(error);
-           
-           });
-           
-        }
-       
-    
-    insertRoom(room) {
-
-        return axios.post('http://localhost:4000/api/room/', room)
-            .then(function(response) {
-        
-            console.log(response);  
-        
-            })
-        
-            .catch(function(error) {
-        
-            console.log(error);
-        
-            });
-        
-    }
-    
-    insertSpeaker (speaker) {
-    
-        return axios.post('http://localhost:4000/api/speaker/', speaker)
-            .then(function(response) {
-            
-            console.log(response);
-            
-            })
-            
-            .catch(function(error) {
-            
-            console.log(error);
-            
-            });
-            
-    } 
-    
-
-    modifySession(session, sessionId) {
-
-        return axios.put(`http://localhost:4000/api/session/${sessionId}`, session)
-            .then(function(response) {
-            
-            console.log(response);
-            
-            })
-            
-            .catch(function(error) {
-            
-            console.log(error);
-
-            });
-            
-            
-    }
-    
-    modifyTimeslot(timeslot, timeslotId) {
-    
-        return axios.put(`http://localhost:4000/api/timeslot/${timeslotId}`, timeslot)
-            .then(function(response) {
-            
-            console.log(response);
-            
-            })
-            
-            .catch(function(error) {
-            
-            console.log(error);
-    
-            });
-            
-    }
-    
-    modifyRoom(room, roomId) {
-    
-        return axios.put(`http://localhost:4000/api/room/${roomId}`, room)
-            .then(function(response) {
-            
-            console.log(response);
-            
-            })
-            
-            .catch(function(error) {
-            
-            console.log(error);
-            
-            });
-            
-    }
-    
-    modifySpeaker(speaker, speakerId) {
-    
-       return axios.put(`http://localhost:4000/api/speaker/${speakerId}`, speaker)
-            .then(function(response) {
-            
-            console.log(response);
-            
-            })
-            
-            .catch(function(error) {
-            
-            console.log(error);
-            
-            });
-            
-    }
-
-    removeSession(sessionId) {
-
-        return axios.delete(`http://localhost:4000/api/session/${sessionId}`)
-            .then(function(response) {
-            
-            console.log(response);
-            
-            })
-            
-            .catch(function(error) {
-            
-            console.log(error);
-           
-        });
-    }
-
-    removeTimeslot(timeslotId) {
-    
-        return axios.delete(`http://localhost:4000/api/timeslot/${timeslotId}`)
-            .then(function(response) {
-            
-            console.log(response);
-            
-            })
-            
-            .catch(function(error) {
-            
-            console.log(error);
-            
-        });
-            
-    }
-    
-    removeRoom(roomId) {
-    
-        return axios.delete(`http://localhost:4000/api/room/${roomId}`)
-            .then(function(response) {
-            
-            console.log(response);
-          
-            })
-            
-            .catch(function(error) {
-            
-            console.log(error);
-           
-            });
-            
-            };
-    
-    removeSpeaker(speakerId) {
-    
-        return axios.delete(`http://localhost:4000/api/speaker/${speakerId}`)
-            .then(function(response) {
-            
-            console.log(response);
-
-            })
-            
-            .catch(function(error) {
-            
-            console.log(error);
-          
-            });
-            
-            };
-    
-    
-    
-
-    querySessions() {
-
-        return axios.get(`http://localhost:4000/api/session/`)
-            .then(function(response) {
-            
-            console.log(response);
-            return response;
-            })
-            
-            .catch(function(error) {
-            
-            console.log(error);
-            return null;
-        });
-    }
-
-
-
-    queryTimeslots() {
-        
-    
-        return axios.get(`http://localhost:4000/api/timeslot/`)
-            .then(function(response) {
-            
-            console.log(response);
-            return response;
-            })
-            
-            .catch(function(error) {
-            
-            console.log(error);
-            return null;
-        });
-            
-     }
-    
-    queryRooms() {
-    
-        return axios.get(`http://localhost:4000/api/room/`)
-            .then(function(response) {
-            
-            console.log(response);
-            return response;
-            })
-            
-            .catch(function(error) {
-            
-            console.log(error);
-            return null;
-            });
-            
-            };
-    
-    querySpeakers() {
-    
-        return axios.get(`http://localhost:4000/api/speaker/`)
-            .then(function(response) {
-            
-            console.log(response);
-            return response;
-            })
-            
-            .catch(function(error) {
-            
-            console.log(error);
-            return null;
-            });
-            
-        }
-    
-    
-    
-
-    querySession(sessionId) {
-    
-        return axios.get(`http://localhost:4000/api/session/${sessionId}`)
-            .then(function(response) 
-            {
-            
-            console.log(response);
-            return response;
-            })
-            
-            .catch(function(error)
-             {
-            
-            console.log(error);
-            return null;
-            });
-            
-        }
-
-    queryTimeslot(timeslotId) {
-    
-        return axios.get(`http://localhost:4000/api/timeslot/${timeslotId}`)
-            .then(function(response) {
-            
-            console.log(response);
-            return response;
-            })
-            
-            .catch(function(error) {
-            
-            console.log(error);
-            return null;
-            });
-            
-            }
-    
-    queryRoom(roomId) {
-    
-        return axios.get(`http://localhost:4000/api/room/${roomId}`)
-            .then(function(response) 
-            {
-            
-            console.log(response);
-            return response;
-            })
-            
-            .catch(function(error)
-             {
-            
-            console.log(error);
-            return null;
-            });
-            
-        }
-    
-    querySpeaker(speakerId) {
-    
-        return axios.get(`http://localhost:4000/api/speaker/${speakerId}`)
-            .then(function(response) {
-            
-            console.log(response);
-            return response;
-            })
-            
-            .catch(function(error) {
-            
-                console.log(error);
-                return null;
-            });
-            
-            }
-    
-    
-    
-
-    querySessionsByTimeslot() {}
-    querySessionsByRoom() {
-        axios.get(`http://localhost:4000/api/room/sortedroom`)
-            .then(function(response) {
-                console.log(response);
-                return response;
-            }).catch(function(error) {
-                console.log(error);
-                return null;
-            });
-            
-    }
-
-    querySessionsBySpeaker() {}
-
-    dbExists() {
-        axios.get(`http://localhost:4000/api/room`)
-            .then(function(response) {
-            
-            console.log(response);
-            return response;
-            })
-            
-            .catch(function(error) {
-            
-            console.log(error);
-            return null;
-            });
-            
-    }
-}
-
-export default Database_Facade;
+*/
