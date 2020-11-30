@@ -4,11 +4,11 @@ module.exports = {
   InsertRoom: (data, callBack) => {
     
     pool.query(
-      `insert into room(roomName,capacity) 
+      `insert into room(roomName,seatCount) 
                 values(?,?)`,
       [
         data.roomName,
-        data.capacity,
+        data.seatCount,
        
       ],
       (error, results) => {
@@ -20,10 +20,10 @@ module.exports = {
     );
   },
  
-  QueryRoomById: (id, callBack) => 
+  QueryRoomById: (room_id, callBack) => 
   {
     pool.query(
-      `SELECT * FROM room WHERE id = ${id}`,
+      `SELECT * FROM room WHERE room_id = ${room_id}`,
       (error, results) => {
         if (error) {
           callBack(error);
@@ -46,10 +46,10 @@ module.exports = {
   },
 
  
-  ModifyRoomById: (id, room, callBack) => {
+  ModifyRoomById: (room_id, room, callBack) => {
     pool.query(
-      "UPDATE room SET roomName = ?, capacity = ? WHERE id = ?",
-      [room.roomName, room.capacity, id],
+      "UPDATE room SET roomName = ?, seatCount = ? WHERE room_id = ?",
+      [room.roomName, room.seatCount, room_id],
       (err, res) => {
         if (err) {
           console.log("error: ", err);
@@ -58,21 +58,21 @@ module.exports = {
         }
   
         if (res.affectedRows == 0) {
-          // not found room with the id
+          // not found room with the room_id
           callBack({ error: "not_found" }, null);
           return;
         }
   
-        console.log("updated room: ", { id: id, room });
-        callBack(null, { id: id, room });
+        console.log("updated room: ", { room_id: room_id, room });
+        callBack(null, { room_id: room_id, room });
       }
     );
   },
 
 
   
-  deleteRoom:(id, callBack) => {
-    pool.query("DELETE FROM room WHERE id = ?", id, (err, res) => {
+  deleteRoom:(room_id, callBack) => {
+    pool.query("DELETE FROM room WHERE room_id = ?", room_id, (err, res) => {
       if (err) {
         console.log("error: ", err);
         callBack(null, err);
@@ -80,12 +80,12 @@ module.exports = {
       }
   
       if (res.affectedRows == 0) {
-        // not found room with the id
+        // not found room with the room_id
         callBack({ error: "not_found" }, null);
         return;
       }
   
-      console.log("deleted room with id: ", id);
+      console.log("deleted room with room_id: ", room_id);
       callBack(null, res);
     });
   
