@@ -26,9 +26,9 @@ const {
     },
     
     QueryRoomById: (req, res) => {
-      const id = req.params.id;
+      const room_id = req.params.room_id;
      
-      QueryRoomById(id, (err, results) => {
+      QueryRoomById(room_id, (err, results) => {
         if (err) {
           console.log(err);
           return;
@@ -68,13 +68,13 @@ const {
       }
       
       ModifyRoomById(
-        req.params.id,
+        req.params.room_id,
         body,
         (err, data) => {
           if (err) {
             if (err.error === "not_found") {
               res.send({
-                message: `Not found room with id ${req.params.id}.`
+                message: `Not found room with room_id ${req.params.room_id}.`
               });
             
             }
@@ -84,11 +84,11 @@ const {
     },
        
     deleteRoom:(req, res) => {
-  deleteRoom(req.params.id, (err, data) => {
+  deleteRoom(req.params.room_id, (err, data) => {
     if (err) {
       if (err.error === "not_found") {
         res.send({
-          message: `could not found room with id ${req.params.id}.`
+          message: `could not found room with room_id ${req.params.room_id}.`
         });
       
       }
