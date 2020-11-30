@@ -1,12 +1,22 @@
-# COMP4970_TeamYellow
+## Set up
 
-## Team members
+### Server
 
-+ Gabe Ehrich (GaEhrlich127)
-+ Michaela Fonseca  
-+ Abdul Kashem  
-+ Jamie Kerr  
-+ Yen Le (yennle)
-+ Xi Xi Lin (xixilinn)  
-+ Kevin Liu (Lim6atwit) 
-+ Brian Meehan  
+`npm install`
+
+### Client
+
+`cd client`
+`npm install`
+
+## Run Application
+
+### Run Server
+
+`npm run server`
+
+### Run Front End
+
+`npm run client`
+
+### NOTE: this readme is likely not up to date
